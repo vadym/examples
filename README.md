@@ -1,7 +1,7 @@
 # This repo includes many useful tips while software development.
 1. License choosing: http://oss-watch.ac.uk/apps/licdiff/
 
-Note: the less restrictive license is the "Apache License 2.0".
+Note: the less restrictive license with explicit conditions is the <strong>"Apache License 2.0"</strong>.
 
 It's conditions include:
 1. Popular and widely used: Yes
