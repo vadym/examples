@@ -1,0 +1,3 @@
+[console_scripts]
+matrix_8x8_tkinter = matrix_8x8_tkinter.cli:main
+

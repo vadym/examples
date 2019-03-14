@@ -1,0 +1,10 @@
+matrix_8x8_tkinter/__init__.py
+matrix_8x8_tkinter/__main__.py
+matrix_8x8_tkinter/cli.py
+matrix_8x8_tkinter/core.py
+matrix_8x8_tkinter/gui.py
+matrix_8x8_tkinter.egg-info/PKG-INFO
+matrix_8x8_tkinter.egg-info/SOURCES.txt
+matrix_8x8_tkinter.egg-info/dependency_links.txt
+matrix_8x8_tkinter.egg-info/entry_points.txt
+matrix_8x8_tkinter.egg-info/top_level.txt
