@@ -2,7 +2,7 @@ print("DEBUG: Module 'gui.py' is executing")
 
 import logging
 
-#from matrix_8x8_tkinter.core import loggerConfigure
+#from matrix_8x8_android.core import loggerConfigure
 
 import tkinter as tk
 from tkinter import ttk

@@ -6,7 +6,7 @@ setuptools.setup(
     author='Vadym Kononenko',
     author_email='<Vadym.kononenko@gmail.com>',
     description='eKids python example 1: create a GUI application to emulate a 8x8 LED matrix',
-    url="https://github.com/vadym/examples/python/matrix_8x8_tkinter",
+    url="https://github.com/vadym/examples/python/matrix_8x8/matrix_8x8_tkinter",
 
     packages=setuptools.find_packages(),
 
