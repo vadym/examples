@@ -5,7 +5,7 @@ from android.widget import Button
 from android.widget import TextView
 from android.view import Gravity
 import android.view
-from tictactoe import tictactoe
+from matrix_8x8_android.tictactoe import tictactoe
 
 
 class ButtonClick(implements=android.view.View[OnClickListener]):

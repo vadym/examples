@@ -1,8 +1,8 @@
 Metadata-Version: 1.1
-Name: matrix-8x8-tkinter
+Name: matrix-tkinter-coloring-8x8
 Version: 1.0
 Summary: eKids python example 1: create a GUI application to emulate a 8x8 LED matrix
-Home-page: https://github.com/vadym/examples/python/matrix_8x8/matrix_8x8_tkinter
+Home-page: https://github.com/vadym/examples/python/matrix_8x8/matrix_tkinter_coloring_8x8
 Author: Vadym Kononenko
 Author-email: <Vadym.kononenko@gmail.com>
 License: UNKNOWN

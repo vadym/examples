@@ -1,12 +1,12 @@
 import setuptools
 
 setuptools.setup(
-    name='matrix_8x8_tkinter',
+    name='matrix_tkinter_1_quest',
     version='1.0',
     author='Vadym Kononenko',
     author_email='<Vadym.kononenko@gmail.com>',
-    description='eKids python example 1: create a GUI application to emulate a 8x8 LED matrix',
-    url="https://github.com/vadym/examples/python/matrix_8x8/matrix_8x8_tkinter",
+    description='eKids python example 1: create a GUI application with a quest through matrix cells',
+    url="https://github.com/vadym/examples/python/matrix/matrix_tkinter/matrix_tkinter_guess_next_4x4",
 
     packages=setuptools.find_packages(),
 
@@ -31,5 +31,5 @@ setuptools.setup(
     ],
     package_data={'Markdown': ['*.md']},
     #install_requires=[''],
-    entry_points={'console_scripts': ['matrix_8x8_tkinter = matrix_8x8_tkinter.cli:main']},
+    entry_points={'console_scripts': ['matrix_tkinter_guess_next_4x4 = matrix_tkinter_guess_next_4x4.cli:main']},
 )
