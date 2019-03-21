@@ -239,10 +239,10 @@ class Gui:
         # Middle Widget fulfilling
         #
         rowList = list()
-        for row in range(4):
+        for row in range(len(self.questMap)): # 4
 
             colList = list()
-            for col in range(4):
+            for col in range(len(self.questMap[0])): # 4
 
                 cellString = tk.StringVar()
                 cellWidget = tk.Entry(self.MiddleFrameWidget_CenterLeft, width=3, textvariable=cellString)
