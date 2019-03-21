@@ -6,13 +6,15 @@ import logging
 
 import tkinter as tk
 from tkinter import ttk
-#from tkinter import messagebox as tkmbox
+from tkinter import messagebox as tkmbox
 
 #import pkg_resources
 #
 #filename = "gui.py"
 #filepath = pkg_resources.resource_filename(__name__, filename)
 #print("DEBUG: Path: %s (__name__: %s)" % (filepath, __name__))
+
+import json
 
 
 class Gui:
@@ -65,27 +67,24 @@ class Gui:
             None
         ]
     ]
+    
 
-    MAIN_WINDOW_GEOMETRY = '140x193'
+    MAIN_WINDOW_GEOMETRY = '393x573'
 
     # Main window widget
     windowWidget = tk.Tk()
 
     # Window Layout widgets
-    TopFrameWidget = tk.Frame()
-    MiddleFrameWidget = tk.Frame()
-    BottomFrameWidget = tk.Frame()
+    TopFrameWidget = tk.Frame(windowWidget)
+    MiddleFrameWidget = tk.Frame(windowWidget)
+    BottomFrameWidget = tk.Frame(windowWidget)
 
-    LeftFrameWidget = tk.Frame(MiddleFrameWidget)
-    LeftFrameWidget.grid(column=0, row=0, pady=10, padx=2, sticky=(tk.W, tk.E, tk.N, tk.S))
+    MiddleFrameWidget_Left = tk.Frame(MiddleFrameWidget)
+    MiddleFrameWidget_CenterLeft = tk.Frame(MiddleFrameWidget)
+    MiddleFrameWidget_CenterRight = tk.Frame(MiddleFrameWidget) # , width=300, height=600
+    MiddleFrameWidget_Right = tk.Frame(MiddleFrameWidget)
 
-    MatrixFrameWidget = tk.Frame(MiddleFrameWidget)
-    MatrixFrameWidget.grid(column=1, row=0, pady=10, sticky=(tk.W, tk.E, tk.N, tk.S))
-
-    MatrixFrameWidgets = list()
-
-    RightFrameWidget = tk.Frame(MiddleFrameWidget)
-    RightFrameWidget.grid(column=2, row=0, pady=10, padx=2, sticky=(tk.W, tk.E, tk.N, tk.S))
+    MatrixWidgets = list()
 
     status = tk.StringVar()
     #color = tk.StringVar()
@@ -100,20 +99,19 @@ class Gui:
 #        self.Update()
 
 #    def Update(self):
-#        for label in self.MatrixFrameWidgets:
+#        for label in self.MatrixWidgets:
 #            label.configure(bg=self.color.get())
 
-    def HintCallback(self):
-        self.status.set('Hint number %s' % self.hints)
-        self.hints += 1
+    def showWinnerMessage(self):
+        tkmbox.showinfo(title='Hurrah. You are winner!',
+                        message="You've win after the {} tries and used the {} hints".format(
+                            self.checks, self.hints
+                        ))
 
-        self.Hint()
+    def walkThroughAllTrack(self, nextRow, nextCol):
+        questCell = self.questMap[nextRow][nextCol]
 
-    def Hint(self):
-        # TODO: Put to a function because of duplication
-        questCell = self.questMap[0][0]
-
-        guiCell = self.MatrixFrameWidgets[0][0]
+        guiCell = self.MatrixWidgets[nextRow][nextCol]
         guiCell_cellWidget = guiCell['cellWidget']
         guiCell_cellString = guiCell['cellString']
 
@@ -126,47 +124,64 @@ class Gui:
         nextRow = questCell['next']['row']
         nextCol = questCell['next']['col']
 
-        while nextRow is not None and \
-              nextCol is not None:
-
-            # TODO: Put to a function because of duplication
-            questCell = self.questMap[nextRow][nextCol]
-
-            guiCell = self.MatrixFrameWidgets[nextRow][nextCol]
-            guiCell_cellWidget = guiCell['cellWidget']
-            guiCell_cellString = guiCell['cellString']
-
-            if questCell['current'] != guiCell_cellString.get():
-                guiCell_cellWidget.configure(bg='yellow')
-                break
-            else:
-                guiCell_cellWidget.configure(bg='green')
-
-            nextRow = questCell['next']['row']
-            nextCol = questCell['next']['col']
-
+        if nextRow is not None and \
+           nextCol is not None:
+            self.walkThroughAllTrack(nextRow, nextCol)
         else:
+            self.showWinnerMessage()
             return 0
-
         return -1
 
+    def HintCallback(self):
+        self.hints += 1
+        self.status.set('Hint number %s' % self.hints)
+
+        self.Hint()
+
+    def Hint(self):
+        return self.walkThroughAllTrack(0, 0)
+
     def CheckCallback(self):
-        self.status.set('Check number %s' % self.checks)
         self.checks += 1
+        self.status.set('Check number %s' % self.checks)
 
         self.Check()
 
     def Check(self):
-        for row, rowList in enumerate(self.MatrixFrameWidgets):
+        for row, rowList in enumerate(self.MatrixWidgets):
             for col, columnList in enumerate(rowList):
-                guiCell = self.MatrixFrameWidgets[row][col]
+                guiCell = self.MatrixWidgets[row][col]
                 guiCell_cellWidget = guiCell['cellWidget']
                 guiCell_cellString = guiCell['cellString']
 
-                questCell = self.questMap[row][col]
-                if questCell is not None:
-                    if questCell['current'] != guiCell_cellString.get():
+                # Check if you provide a letter...
+                guiCell_text = guiCell_cellString.get()
+                if guiCell_text != '':
+                    # Oh, you put there something.. Comparing with the quest array..
+                    questCell = self.questMap[row][col]
+                    if questCell is not None:
+                        # Seems, something must be set here.
+                        if questCell['current'] != guiCell_cellString.get():
+                            # Wrong letter
+                            guiCell_cellWidget.configure(bg='red')
+                            tkmbox.showinfo(title="Mistake",
+                                            message="You've made a mistake: wrong letter {}. Use another one.".format(
+                                                guiCell_text
+                                            ))
+                            guiCell_cellString.set('')
+                            guiCell_cellWidget.configure(bg='white')
+                        else:
+                            # Correct letter
+                            guiCell_cellWidget.configure(bg='light green')
+                    else:
+                        # Cell must be empty.
                         guiCell_cellWidget.configure(bg='red')
+                        tkmbox.showinfo(title="Mistake",
+                                        message="You made a mistake: wrong letter {}. Cell must be empty.".format(
+                                            guiCell_text
+                                        ))
+                        guiCell_cellString.set('')
+                        guiCell_cellWidget.configure(bg='white')
 
     def __init__(self):
         # Main window Widget
@@ -183,6 +198,18 @@ class Gui:
         # Middle Widget
         self.MiddleFrameWidget.grid_columnconfigure(0, weight=3, pad=3)
         self.MiddleFrameWidget.grid(column=0, row=1, sticky=(tk.W, tk.E, tk.N, tk.S))
+
+        self.MiddleFrameWidget_Left.grid(column=0, row=0, pady=10, padx=2, sticky=(tk.W, tk.E, tk.N, tk.S))
+        self.MiddleFrameWidget_CenterLeft.grid(column=1, row=0, pady=10, sticky=(tk.W, tk.E, tk.N, tk.S))
+        self.MiddleFrameWidget_CenterRight.grid(column=2, row=0, pady=10, sticky=(tk.W, tk.E, tk.N, tk.S))
+
+        # ensure a consistent GUI size
+        #self.MiddleFrameWidget_CenterRight.grid_propagate(False)
+        # implement stretchability
+        #self.MiddleFrameWidget_CenterRight.grid_rowconfigure(0, weight=1)
+        #self.MiddleFrameWidget_CenterRight.grid_columnconfigure(0, weight=1)
+
+        self.MiddleFrameWidget_Right.grid(column=3, row=0, pady=10, padx=2, sticky=(tk.W, tk.E, tk.N, tk.S))
 
         # Bottom Widget
         self.BottomFrameWidget.grid_columnconfigure(0, weight=3, pad=3)
@@ -218,7 +245,7 @@ class Gui:
             for col in range(4):
 
                 cellString = tk.StringVar()
-                cellWidget = tk.Entry(self.MatrixFrameWidget, width=3, textvariable=cellString)
+                cellWidget = tk.Entry(self.MiddleFrameWidget_CenterLeft, width=3, textvariable=cellString)
                 cellWidget.grid(column=col, row=row, padx=5, pady=5, sticky=(tk.W, tk.E, tk.N, tk.S))
 
                 cell = {
@@ -230,7 +257,16 @@ class Gui:
             rowList.append(colList)
 
         # Save widgets to access to the matrix cells
-        self.MatrixFrameWidgets = rowList
+        self.MatrixWidgets = rowList
+
+        # Show the matrix array
+        text = tk.Text(self.MiddleFrameWidget_CenterRight, height=30, width=30)
+        text.grid(column=0, row=0, padx=5, pady=5, sticky=(tk.W, tk.E, tk.N, tk.S))
+        text.insert(tk.END, json.dumps(self.questMap, indent=4))
+
+        #scroll = tk.Scrollbar(self.MiddleFrameWidget_CenterRight, command=text.yview)
+        #scroll.grid(column=2, row=0, sticky=(tk.W, tk.E, tk.N, tk.S))
+        #text['yscrollcommand'] = scroll.set
 
 ##
 # Case 2
@@ -242,7 +278,7 @@ class Gui:
 #
 #                # Save widgets to access to the matrix cells
 #                #index = row * 8 + column
-#                self.MatrixFrameWidgets.append(label)
+#                self.MatrixWidgets.append(label)
 
 ##
 # Case 1
