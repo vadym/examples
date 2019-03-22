@@ -324,6 +324,7 @@ class Gui:
         text = tk.Text(self.MiddleFrameWidget_CenterRight, height=30, width=30)
         text.grid(column=0, row=0, padx=5, pady=5, sticky=(tk.W, tk.E, tk.N, tk.S))
         text.insert(tk.END, json.dumps(self.questMap, indent=4))
+        text.configure(state='disabled')
 
         ##
         # Bottom Widget fulfilling
