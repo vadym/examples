@@ -1,7 +1,7 @@
 print("DEBUG: Module '__main__.py' is executing")
 
 #from .cli import main
-from matrix_tkinter_guess_next_4x4.cli import main
+from matrix_tkinter_coloring1.cli import main
 
 #import pkg_resources
 #

@@ -1,7 +1,7 @@
 print("DEBUG: Module 'cli.py' is executing")
 
-from matrix_tkinter_coloring_8x8.core import loggerConfigure
-from matrix_tkinter_coloring_8x8.gui import Gui
+from matrix_tkinter_coloring1.core import loggerConfigure
+from matrix_tkinter_coloring1.gui import Gui
 
 import argparse
 import logging

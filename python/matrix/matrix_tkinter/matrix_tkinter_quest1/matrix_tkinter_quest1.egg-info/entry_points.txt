@@ -1,0 +1,3 @@
+[console_scripts]
+matrix_tkinter_quest1 = matrix_tkinter_quest1.cli:main
+

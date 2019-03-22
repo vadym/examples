@@ -1,7 +1,7 @@
 print("DEBUG: Module 'cli.py' is executing")
 
-from matrix_tkinter_guess_next_4x4.core import loggerConfigure
-from matrix_tkinter_guess_next_4x4.gui import Gui
+from matrix_tkinter_quest1.core import loggerConfigure
+from matrix_tkinter_quest1.gui import Gui
 
 import argparse
 import logging

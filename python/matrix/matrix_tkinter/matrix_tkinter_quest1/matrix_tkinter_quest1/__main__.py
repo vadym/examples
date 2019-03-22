@@ -1,7 +1,6 @@
 print("DEBUG: Module '__main__.py' is executing")
 
-#from .cli import main
-from matrix_tkinter_coloring_8x8.cli import main
+from matrix_tkinter_quest1.cli import main
 
 #import pkg_resources
 #

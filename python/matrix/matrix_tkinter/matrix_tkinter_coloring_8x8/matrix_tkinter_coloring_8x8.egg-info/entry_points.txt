@@ -1,3 +1,0 @@
-[console_scripts]
-matrix_tkinter_coloring_8x8 = matrix_tkinter_coloring_8x8.cli:main
-
