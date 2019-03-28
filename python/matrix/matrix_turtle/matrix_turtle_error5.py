@@ -31,12 +31,16 @@ def draw_matrix(matrix):
 
             if cell == 1:
                 t.color("black")
+                t.fillcolor("black")
             elif cell == 2:
                 t.color("red")
+                t.fillcolor("red")
             elif cell == 3:
                 t.color("blue")
+                t.fillcolor("blue")
             else:
                 t.color("yellow")
+                t.fillcolor("yellow")
 
             curX = startX + shapeSide * col + col * 2
             curY = startY + shapeSide * row + row * 2
