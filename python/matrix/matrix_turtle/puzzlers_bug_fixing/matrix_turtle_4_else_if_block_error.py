@@ -1,5 +1,10 @@
-import turtle as t
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Виправіть логічні помилки у методі draw_matrix у else-if блоці
+"""
 
+import turtle as t
 
 def draw_shape(sides, length):
     t.begin_fill()
@@ -7,7 +12,7 @@ def draw_shape(sides, length):
     for _ in range(sides):
         t.forward(length)
         t.right(360 / sides)
-        t.end_fill()
+    t.end_fill()
 
 
 def draw_matrix(matrix):
@@ -19,8 +24,8 @@ def draw_matrix(matrix):
 
     shapeSide = 50
 
-    for col in range(len(matrix[row])):
-        for row in range(len(matrix)):
+    for row in range(len(matrix)):
+        for col in range(len(matrix[row])):
             cell = matrix[row][col]
 
             if cell == 1:
@@ -32,9 +37,9 @@ def draw_matrix(matrix):
             elif cell == 3:
                 t.color("blue")
                 t.fillcolor("blue")
-            else:
-                t.color("yellow")
-                t.fillcolor("yellow")
+
+            t.color("yellow")
+            t.fillcolor("yellow")
 
             curX = startX + shapeSide * col + col * 2
             curY = startY - shapeSide * row - row * 2

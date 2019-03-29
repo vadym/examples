@@ -1,5 +1,10 @@
-import turtle as t
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Виправіть логічні помилки у методі draw_matrix у координатах у та формулі
+"""
 
+import turtle as t
 
 def draw_shape(sides, length):
     t.begin_fill()
@@ -7,7 +12,7 @@ def draw_shape(sides, length):
     for _ in range(sides):
         t.forward(length)
         t.right(360 / sides)
-        t.end_fill()
+    t.end_fill()
 
 
 def draw_matrix(matrix):

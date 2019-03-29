@@ -1,3 +1,9 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Виправіть синтаксичні помилки у методі draw_matrix
+"""
+
 import turtle as t
 
 
@@ -7,7 +13,7 @@ def draw_shape(sides, length):
     for _ in range(sides):
         t.forward(length)
         t.right(360 / sides)
-        t.end_fill()
+    t.end_fill()
 
 
 def draw_matrix(matrix):
@@ -19,22 +25,22 @@ def draw_matrix(matrix):
 
     shapeSide = 50
 
-    for row in range(len(matrix)):
-        for col in range(len(matrix[row])):
-            cell = matrix[row][col]
+for row in range(len(matrix)):
+for col in range(len(matrix[row])):
+cell = matrix[row][col]
 
-            if cell == 1:
-                t.color("black")
-                t.fillcolor("black")
-            elif cell == 2:
-                t.color("red")
-                t.fillcolor("red")
-            elif cell == 3:
-                t.color("blue")
-                t.fillcolor("blue")
-
-            t.color("yellow")
-            t.fillcolor("yellow")
+if cell == 1:
+t.color("black")
+t.fillcolor("black")
+elif cell == 2:
+t.color("red")
+t.fillcolor("red")
+elif cell == 3:
+t.color("blue")
+t.fillcolor("blue")
+else:
+t.color("yellow")
+t.fillcolor("yellow")
 
             curX = startX + shapeSide * col + col * 2
             curY = startY - shapeSide * row - row * 2

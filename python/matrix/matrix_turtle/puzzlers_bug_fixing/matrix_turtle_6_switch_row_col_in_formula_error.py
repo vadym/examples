@@ -1,5 +1,10 @@
-import turtle as t
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Виправіть логічні помилки у методі draw_matrix у формулах розрахунку координат
+"""
 
+import turtle as t
 
 def draw_shape(sides, length):
     t.begin_fill()
@@ -7,7 +12,7 @@ def draw_shape(sides, length):
     for _ in range(sides):
         t.forward(length)
         t.right(360 / sides)
-        t.end_fill()
+    t.end_fill()
 
 
 def draw_matrix(matrix):
@@ -15,35 +20,42 @@ def draw_matrix(matrix):
     t.speed(100)
 
     startX = -200
-    startY = 200
+    startY = -200
 
     shapeSide = 50
 
-    for row in range(len(matrix))
-        for col in range(len(matrix[row]))
-            cell = matrix[row][col]
+    # Assume the 1-st level of the matrix contains the rows
+    rows = matrix
 
-            if cell == 1
+    for row in range(len(rows)):
+        # Assume the 2-st level of the matrix contains the cols
+        cols = matrix[row]
+
+        for col in range(len(cols)):
+            cell = cols[col]
+
+            if cell == 1:
                 t.color("black")
                 t.fillcolor("black")
-            elif cell == 2
+            elif cell == 2:
                 t.color("red")
                 t.fillcolor("red")
-            elif cell == 3
+            elif cell == 3:
                 t.color("blue")
                 t.fillcolor("blue")
-            else
+            else:
                 t.color("yellow")
                 t.fillcolor("yellow")
 
-            curX = startX + shapeSide * col + col * 2
-            curY = startY - shapeSide * row - row * 2
+            curX = startX + shapeSide * row + row * 2
+            curY = startY + shapeSide * col + col * 2
 
             t.penup()
             t.goto(curX, curY)
             t.pendown()
 
             draw_shape(4, shapeSide)
+
 
 matrixSmile = \
     [
