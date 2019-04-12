@@ -84,6 +84,6 @@ t.penup()
 t.goto(-200, 200)
 draw_sun('red', 'yellow')
 
-draw_flower(0, 0, zoom=BASE_ZOOM * BASE_ZOOM_INTENSITY)
+draw_flower(0, 0, zoom=BASE_ZOOM_INITIAL * BASE_ZOOM_INTENSITY)
 
 t.exitonclick()
