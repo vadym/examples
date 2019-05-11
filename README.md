@@ -4,11 +4,11 @@
 Note: the less restrictive license with explicit conditions is the <strong>"Apache License 2.0"</strong>.
 
 It's conditions include:
-1. Popular and widely used: Yes
-2. Licence type: Permissive
-3. Jurisdiction: No
-4.a Grants patent rights: Yes
-4.b Patent retaliation clause: Yes
-5. Specifies enhanced attribution: No
-6. Addresses privacy loophole: No
-7. Includes 'no promotion' feature: Yes
+. Popular and widely used: Yes
+. Licence type: Permissive
+. Jurisdiction: No
+.a Grants patent rights: Yes
+.b Patent retaliation clause: Yes
+. Specifies enhanced attribution: No
+. Addresses privacy loophole: No
+. Includes 'no promotion' feature: Yes
